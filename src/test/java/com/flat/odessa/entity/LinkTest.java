@@ -7,10 +7,11 @@ import com.flat.odessa.extractors.UniqueLinkExtractor;
 public class LinkTest {
 
   public static void main(String[] args) {
-    Link link = new Link("https://github.com",
+    Links links = new Links("https://github.com",
         new LinkAbsoluteExtractor(new UniqueLinkExtractor(new TagExtractor())));
-    while (link.hasNext()) {
-      System.out.println(link.next());
+
+    for (String link : links) {
+      System.out.println(link);
     }
   }
 }
