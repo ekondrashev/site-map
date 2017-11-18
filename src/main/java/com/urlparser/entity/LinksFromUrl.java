@@ -16,16 +16,12 @@ import java.util.List;
 
 public class LinksFromUrl implements Links {
 
+  private String url;
   private Document doc;
   List<URL> listedLinks = new ArrayList<>();
 
   public LinksFromUrl(String url) {
-    try {
-      doc = Jsoup.connect(url).get();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    listed();
+    this.url = url;
   }
 
   public void listed() {
@@ -41,6 +37,12 @@ public class LinksFromUrl implements Links {
 
   @Override
   public Iterator<URL> iterator() {
+    try {
+      doc = Jsoup.connect(url).get();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    listed();
     return listedLinks.iterator();
   }
 }

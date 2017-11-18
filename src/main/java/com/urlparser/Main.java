@@ -9,11 +9,11 @@ public class Main {
 
   public static void main(String[] args) {
 
-    String urlInput = args[0];
+    String url = args[0];
 
-    Links links = new LinksFromUrl(urlInput);
-    for (URL url : links) {
-      System.out.println(url);
+    Links links = new LinksFromUrl(url);
+    for (URL line : links) {
+      System.out.println(line);
     }
   }
 }
