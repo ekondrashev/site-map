@@ -6,6 +6,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -14,19 +17,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class LinksFromUrl implements Links {
 
+public class LinksFromUrl implements Links{
+
+  private String url;
   private Document doc;
   List<URL> listedLinks = new ArrayList<>();
 
   public LinksFromUrl(String url) {
-    try {
-      doc = Jsoup.connect(url).get();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    listed();
+    this.url = url;
   }
+
+  private Logger log = LogManager.getLogger(getClass());
 
   public void listed() {
     Elements links = doc.select("a[href]");
@@ -34,13 +36,19 @@ public class LinksFromUrl implements Links {
       try {
         listedLinks.add(new URL(link.attr("abs:href")));
       } catch (MalformedURLException e) {
-        e.printStackTrace();
+        log.error("Error during URL creation", e);
       }
     }
   }
 
   @Override
   public Iterator<URL> iterator() {
+    try {
+      doc = Jsoup.connect(url).get();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    listed();
     return listedLinks.iterator();
   }
 }
