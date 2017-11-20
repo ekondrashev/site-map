@@ -4,6 +4,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import com.urlparser.model.Links;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,8 +20,10 @@ public class LinksFromUrlTest {
 
   Links<URL> origin;
   List<String> array;
-  List<URL> links;
-  List<URL> linksOrigin;
+  List<URL> expected;
+  List<URL> actual;
+
+  private static Logger log = LogManager.getLogger(LinksFromUrl.class);
 
   @Before
   public void setUp() {
@@ -91,24 +95,24 @@ public class LinksFromUrlTest {
         "https://github.com",
         "https://github.com");
 
-    links = new ArrayList<>();
-    linksOrigin = new ArrayList<>();
-
-    for (URL url : origin) {
-      linksOrigin.add(url);
-    }
+    expected = new ArrayList<>();
 
     for (String string : array) {
       try {
-        links.add(new URL(string));
+        expected.add(new URL(string));
       } catch (MalformedURLException e) {
-        e.printStackTrace();
+        log.error("Error during URL creation", e);
       }
     }
   }
 
   @Test
   public void testTest() {
-    assertThat(linksOrigin, CoreMatchers.is(links));
+    actual = new ArrayList<>();
+
+    for (URL url : origin) {
+      actual.add(url);
+    }
+    assertThat(actual, CoreMatchers.is(expected));
   }
 }

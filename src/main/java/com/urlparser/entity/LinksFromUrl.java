@@ -20,36 +20,35 @@ import java.util.List;
 
 public class LinksFromUrl implements Links {
 
-  private static String url;
+  private String url;
 
   public LinksFromUrl(String url) {
     this.url = url;
   }
 
-  private Logger log = LogManager.getLogger(getClass());
+  private static Logger log = LogManager.getLogger(LinksFromUrl.class);
 
-  private static List<URL> links() throws MalformedURLException {
+  private static List<URL> links(String url) {
     Document doc = null;
     List<URL> listedLinks = new ArrayList<>();
     try {
       doc = Jsoup.connect(url).get();
     } catch (IOException e) {
-      e.printStackTrace();
+      log.error("Error during connect to website", e);
     }
     Elements links = doc.select("a[href]");
     for (Element link : links) {
+      try {
         listedLinks.add(new URL(link.attr("abs:href")));
+      } catch (MalformedURLException e) {
+        log.error("Error during URL creation", e);
+      }
     }
     return listedLinks;
   }
 
   @Override
   public Iterator<URL> iterator() {
-    try {
-      return links().iterator();
-    } catch (MalformedURLException e) {
-      log.error("Error during URL creation", e);
-    }
-    return null;
+    return links(url).iterator();
   }
 }
