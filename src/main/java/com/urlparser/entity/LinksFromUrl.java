@@ -18,11 +18,9 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class LinksFromUrl implements Links{
+public class LinksFromUrl implements Links {
 
-  private String url;
-  private Document doc;
-  List<URL> listedLinks = new ArrayList<>();
+  private static String url;
 
   public LinksFromUrl(String url) {
     this.url = url;
@@ -30,25 +28,28 @@ public class LinksFromUrl implements Links{
 
   private Logger log = LogManager.getLogger(getClass());
 
-  public void listed() {
-    Elements links = doc.select("a[href]");
-    for (Element link : links) {
-      try {
-        listedLinks.add(new URL(link.attr("abs:href")));
-      } catch (MalformedURLException e) {
-        log.error("Error during URL creation", e);
-      }
-    }
-  }
-
-  @Override
-  public Iterator<URL> iterator() {
+  private static List<URL> links() throws MalformedURLException {
+    Document doc = null;
+    List<URL> listedLinks = new ArrayList<>();
     try {
       doc = Jsoup.connect(url).get();
     } catch (IOException e) {
       e.printStackTrace();
     }
-    listed();
-    return listedLinks.iterator();
+    Elements links = doc.select("a[href]");
+    for (Element link : links) {
+        listedLinks.add(new URL(link.attr("abs:href")));
+    }
+    return listedLinks;
+  }
+
+  @Override
+  public Iterator<URL> iterator() {
+    try {
+      return links().iterator();
+    } catch (MalformedURLException e) {
+      log.error("Error during URL creation", e);
+    }
+    return null;
   }
 }
