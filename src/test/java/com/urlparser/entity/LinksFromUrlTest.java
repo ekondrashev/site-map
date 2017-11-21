@@ -18,9 +18,9 @@ import java.util.List;
 
 public class LinksFromUrlTest {
 
-  List<URL> expected;
-
   private static Logger log = LogManager.getLogger(LinksFromUrl.class);
+
+  List<URL> expected;
 
   @Before
   public void setUp() {

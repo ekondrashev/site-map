@@ -20,13 +20,12 @@ import java.util.List;
 
 public class LinksFromUrl implements Links {
 
-  private String url;
+  private static Logger log = LogManager.getLogger(LinksFromUrl.class);
+  private final String url;
 
   public LinksFromUrl(String url) {
     this.url = url;
   }
-
-  private static Logger log = LogManager.getLogger(LinksFromUrl.class);
 
   private static List<URL> links(String url) {
     Document doc = null;
