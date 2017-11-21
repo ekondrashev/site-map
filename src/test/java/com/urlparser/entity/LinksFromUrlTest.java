@@ -18,17 +18,14 @@ import java.util.List;
 
 public class LinksFromUrlTest {
 
-  Links<URL> origin;
-  List<String> array;
   List<URL> expected;
-  List<URL> actual;
 
   private static Logger log = LogManager.getLogger(LinksFromUrl.class);
 
   @Before
   public void setUp() {
-    origin = new LinksFromUrl("https://github.com");
-    array = Arrays.asList("https://github.com#start-of-content",
+
+    List<String> array = Arrays.asList("https://github.com#start-of-content",
         "https://github.com/",
         "https://github.com/features",
         "https://github.com/business",
@@ -107,8 +104,9 @@ public class LinksFromUrlTest {
   }
 
   @Test
-  public void testTest() {
-    actual = new ArrayList<>();
+  public void linksTest() {
+    Links<URL> origin = new LinksFromUrl("https://github.com");
+    List<URL> actual = new ArrayList<>();
 
     for (URL url : origin) {
       actual.add(url);
