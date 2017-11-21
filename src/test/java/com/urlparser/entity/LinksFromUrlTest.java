@@ -105,7 +105,7 @@ public class LinksFromUrlTest {
 
   @Test
   public void linksTest() {
-    Links<URL> origin = new LinksFromUrl("https://github.com");
+    Links<URL> origin = new LinksFromUrl(new StringLinksFromUrl("https://github.com"));
     List<URL> actual = new ArrayList<>();
 
     for (URL url : origin) {

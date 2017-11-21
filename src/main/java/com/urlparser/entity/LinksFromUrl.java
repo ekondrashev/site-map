@@ -21,24 +21,17 @@ import java.util.List;
 public class LinksFromUrl implements Links {
 
   private static Logger log = LogManager.getLogger(LinksFromUrl.class);
-  private final String url;
+  private Links<String> origin;
 
-  public LinksFromUrl(String url) {
-    this.url = url;
+  public LinksFromUrl(Links<String> origin) {
+    this.origin = origin;
   }
 
-  private static List<URL> links(String url) {
-    Document doc = null;
+  private static List<URL> links(Links<String> origin) {
     List<URL> listedLinks = new ArrayList<>();
-    try {
-      doc = Jsoup.connect(url).get();
-    } catch (IOException e) {
-      log.error("Error during connect to website", e);
-    }
-    Elements links = doc.select("a[href]");
-    for (Element link : links) {
+    for (String link : origin) {
       try {
-        listedLinks.add(new URL(link.attr("abs:href")));
+        listedLinks.add(new URL(link));
       } catch (MalformedURLException e) {
         log.error("Error during URL creation", e);
       }
@@ -48,6 +41,6 @@ public class LinksFromUrl implements Links {
 
   @Override
   public Iterator<URL> iterator() {
-    return links(url).iterator();
+    return links(origin).iterator();
   }
 }

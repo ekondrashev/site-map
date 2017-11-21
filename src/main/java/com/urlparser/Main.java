@@ -1,6 +1,7 @@
 package com.urlparser;
 
 import com.urlparser.entity.LinksFromUrl;
+import com.urlparser.entity.StringLinksFromUrl;
 import com.urlparser.model.Links;
 
 import java.net.URL;
@@ -11,7 +12,7 @@ public class Main {
 
     String url = args[0];
 
-    Links<URL> links = new LinksFromUrl(url);
+    Links<URL> links = new LinksFromUrl(new StringLinksFromUrl(url));
     for (URL line : links) {
       System.out.println(line);
     }
