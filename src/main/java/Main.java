@@ -8,9 +8,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Links links = new LinksFromSinglePage(new URL("http://www.tutorialspoint.com/"));
+        Links<String> links = new LinksFromSinglePage<String>(args[0]);
 
-        for (URL url : links) {
+        for (String url : links) {
            System.out.println(url);
         }
 

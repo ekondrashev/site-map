@@ -12,26 +12,56 @@ import java.util.List;
 /**
  * Created by pavel on 16/11/2017.
  */
-public class LinksFromSinglePage implements Links {
+public class LinksFromSinglePage<T> implements Links<T> {
 
+    List<T> links;
+    String url;
 
-    List<URL> links = new ArrayList<URL>();
+    public LinksFromSinglePage(String url) {
+        this.url = url;
+    }
 
-    public LinksFromSinglePage(URL url) {
-        Document doc;
-        try {
-            doc = Jsoup.connect(url.toString()).get();
-            Elements elements = doc.body().getElementsByTag("a");
+    private void prepareLinks() {
+        if(links == null) {
+            links  = new ArrayList<T>();
+            Document doc;
+            try {
+                doc = Jsoup.connect(url).get();
+                Elements elements = doc.body().getElementsByTag("a");
 
-            for (Element element : elements) {
-                links.add(new URL(element.attr("abs:href")));
+                for (Element element : elements) {
+                    links.add((T) (element.attr("abs:href")));
+                }
+
+            } catch (IOException e) {
             }
-
-        } catch (IOException e) {
         }
     }
 
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
+        prepareLinks();
         return links.iterator();
+        // return new LinksIterator<T>(links.iterator());
     }
+
+//    class LinksIterator<T> implements Iterator<T>    {
+//
+//        Iterator iterator;
+//
+//        public LinksIterator(Iterator iterator) {
+//            this.iterator = iterator;
+//        }
+//
+//        public boolean hasNext() {
+//            return iterator.hasNext();
+//        }
+//
+//        public T next() {
+//            return (T)iterator.next();
+//        }
+//
+//        public void remove() {
+//            iterator.remove();
+//        }
+//    }
 }
