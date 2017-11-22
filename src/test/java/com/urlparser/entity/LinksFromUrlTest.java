@@ -106,11 +106,6 @@ public class LinksFromUrlTest {
   @Test
   public void linksTest() {
     Links<URL> origin = new LinksFromUrl(new StringLinksFromUrl("https://github.com"));
-    List<URL> actual = new ArrayList<>();
-
-    for (URL url : origin) {
-      actual.add(url);
-    }
-    assertThat(actual, CoreMatchers.is(expected));
+    assertThat(Matcher.matches(origin, expected), CoreMatchers.is(true));
   }
 }
