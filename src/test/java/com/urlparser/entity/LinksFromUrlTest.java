@@ -1,12 +1,12 @@
 package com.urlparser.entity;
 
+import static com.urlparser.matcher.Matcher.contains;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import com.urlparser.model.Links;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -106,6 +106,8 @@ public class LinksFromUrlTest {
   @Test
   public void linksTest() {
     Links<URL> origin = new LinksFromUrl(new StringLinksFromUrl("https://github.com"));
-    assertThat(Matcher.matches(origin, expected), CoreMatchers.is(true));
+    assertThat(origin, contains(expected));
   }
+
+
 }
