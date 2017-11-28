@@ -1,7 +1,7 @@
 package com.urlparser.entity;
 
+import static com.urlparser.matcher.Matcher.contains;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
 
 import com.urlparser.model.Links;
 
@@ -106,7 +106,7 @@ public class LinksFromUrlTest {
   @Test
   public void linksTest() {
     Links<URL> origin = new LinksFromUrl(new StringLinksFromUrl("https://github.com"));
-    assertThat(origin, contains(expected.toArray(new URL[expected.size()])));
+    assertThat(origin, contains(expected));
   }
 
 }

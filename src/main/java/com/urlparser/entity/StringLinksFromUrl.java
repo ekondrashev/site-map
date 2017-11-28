@@ -10,13 +10,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class StringLinksFromUrl implements Links{
+public class StringLinksFromUrl implements Links<String>{
 
   private static Logger log = LogManager.getLogger(StringLinksFromUrl.class);
   private final String url;

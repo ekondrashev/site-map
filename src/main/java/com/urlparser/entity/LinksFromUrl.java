@@ -2,15 +2,9 @@ package com.urlparser.entity;
 
 import com.urlparser.model.Links;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class LinksFromUrl implements Links {
+public class LinksFromUrl implements Links<URL> {
 
   private static Logger log = LogManager.getLogger(LinksFromUrl.class);
   private Links<String> origin;
