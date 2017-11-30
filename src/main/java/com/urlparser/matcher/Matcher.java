@@ -6,7 +6,7 @@ import org.hamcrest.TypeSafeMatcher;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * This Matcher compare Iterable<T> with Iterable<T> for equals.
+ * This Matcher compares Iterable with Iterable for equals.
  *
  * @author Anton Panciuc
  */
