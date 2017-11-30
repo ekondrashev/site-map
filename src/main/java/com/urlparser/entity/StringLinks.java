@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class StringLinksFromUrl implements Links<String>{
+public class StringLinks implements Links<String>{
 
-  private static Logger log = LogManager.getLogger(StringLinksFromUrl.class);
+  private static Logger log = LogManager.getLogger(StringLinks.class);
   private final String url;
 
-  public StringLinksFromUrl(String url) {
+  public StringLinks(String url) {
     this.url = url;
   }
 

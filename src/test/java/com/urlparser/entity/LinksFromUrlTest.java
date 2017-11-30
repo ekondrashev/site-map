@@ -25,7 +25,7 @@ public class LinksFromUrlTest {
   @Before
   public void setUp() {
 
-    List<String> array = Arrays.asList("https://github.com#start-of-contentT",
+    List<String> array = Arrays.asList("https://github.com#start-of-content",
         "https://github.com/",
         "https://github.com/features",
         "https://github.com/business",
@@ -105,7 +105,7 @@ public class LinksFromUrlTest {
 
   @Test
   public void linksTest() {
-    Links<URL> origin = new LinksFromUrl(new StringLinksFromUrl("https://github.com"));
+    Links<URL> origin = new LinksFromUrl(new StringLinks("https://github.com"));
     assertThat(origin, is(expected));
   }
 
