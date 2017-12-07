@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class LinksFromSinglePage<T> implements Links<T> {
+public class LinksFromSinglePage<T> implements Links<String> {
 
     String url;
 
@@ -17,16 +17,16 @@ public class LinksFromSinglePage<T> implements Links<T> {
         this.url = url;
     }
 
-    private List<T> prepareLinks() {
+    private List<String> prepareLinks() {
 
-        List<T> links  = new ArrayList<T>();
+        List<String> links  = new ArrayList<String>();
             Document doc;
             try {
                 doc = Jsoup.connect(url).get();
                 Elements elements = doc.body().getElementsByTag("a");
 
                 for (Element element : elements) {
-                    T urlName = (T) element.attr("abs:href");
+                    String urlName =  element.attr("abs:href");
                     if (!urlName.equals("")) {
                         links.add(urlName);
                     }
@@ -38,8 +38,8 @@ public class LinksFromSinglePage<T> implements Links<T> {
         return links;
     }
 
-    public Iterator<T> iterator() {
-        List<T> links = prepareLinks();
+    public Iterator<String> iterator() {
+        List<String> links = prepareLinks();
         return links.iterator();
 
     }
