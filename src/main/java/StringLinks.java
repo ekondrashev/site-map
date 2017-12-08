@@ -4,16 +4,17 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 
-public class LinksFromSinglePage<T> implements Links<String> {
+public class StringLinks implements Links, LinksURL{
 
     String url;
 
-    public LinksFromSinglePage(String url) {
+    public StringLinks(String url) {
         this.url = url;
     }
 
@@ -32,13 +33,15 @@ public class LinksFromSinglePage<T> implements Links<String> {
                     }
                 }
 
+            } catch (IllegalStateException e) {
             } catch (IOException e) {
+                e.printStackTrace();
             }
 
         return links;
     }
 
-    public Iterator<String> iterator() {
+    public Iterator iterator() {
         List<String> links = prepareLinks();
         return links.iterator();
 

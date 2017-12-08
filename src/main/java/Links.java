@@ -1,6 +1,6 @@
 
 
-public interface Links<T> extends Iterable<T>{
+public interface Links<String> extends Iterable<String>{
 
 
 }
