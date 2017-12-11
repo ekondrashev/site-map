@@ -4,13 +4,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 
-public class StringLinks implements Links, LinksURL{
+public class StringLinks implements Links {
 
     String url;
 

@@ -1,6 +1,6 @@
+import java.net.URL;
 
-
-public interface Links<String> extends Iterable<String>{
+public interface Links<URL> extends Iterable<String>{
 
 
 }
