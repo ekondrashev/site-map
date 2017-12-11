@@ -2,7 +2,7 @@ import java.util.Iterator;
 
 public class BaseDecorator implements Links {
 
-    protected Links links;
+    protected Links <String> links;
     protected String url;
 
     public Iterator iterator() {

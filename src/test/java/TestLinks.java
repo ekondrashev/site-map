@@ -1,5 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -10,14 +12,14 @@ import java.util.List;
  */
 public class TestLinks {
 
-    List<String> list;
+    List<URL> list;
     
     @Before
     public void createListLinks() {
-        Links<String> links = new DecoratorForString(new DecoratorForURL("http://www.tutorialspoint.com/"));
-         list = new ArrayList<String>();
+        Links<URL> links = new DecoratorForURL (new DecoratorForString("http://www.tutorialspoint.com/"));
+         list = new ArrayList<URL>();
 
-        for (String url : links) {
+        for (URL url : links) {
             list.add(url);
         }
     }
@@ -56,6 +58,11 @@ public class TestLinks {
 
         assert (count == 0);
       
+    }
+
+    @Test
+    public void testPasitiveCheckMain() throws IOException {
+        Main.main(new String[]{"http://www.tutorialspoint.com/"});
     }
 
 

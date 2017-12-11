@@ -1,15 +1,14 @@
 import java.io.IOException;
+import java.net.URL;
 
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
-//        Links<String> links = new StringLinks(args[0]);
-       Links<String> links = new DecoratorForString(new DecoratorForURL(args[0]));
+       Links<URL> links = new DecoratorForURL(new DecoratorForString(args[0]));
 
-
-        for (String url : links) {
+        for (URL url : links) {
            System.out.println(url);
         }
 
