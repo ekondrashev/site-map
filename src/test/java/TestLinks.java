@@ -1,7 +1,5 @@
-import org.apache.commons.validator.routines.UrlValidator;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ public class TestLinks {
     
     @Before
     public void createListLinks() {
-        Links<String> links = new StringLinks("http://www.tutorialspoint.com/");
+        Links<String> links = new DecoratorForString(new DecoratorForURL("http://www.tutorialspoint.com/"));
          list = new ArrayList<String>();
 
         for (String url : links) {
