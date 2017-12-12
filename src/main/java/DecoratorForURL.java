@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class DecoratorForURL extends BaseDecorator{
+public class DecoratorForURL implements Links{
 
+    protected Links <String> links;
 
-    public DecoratorForURL(Links links) {
-        super(links);
+    public DecoratorForURL(Links<String> links) {
+        this.links = links;
     }
 
     private List<URL> prepareLinks() {

@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class DecoratorForString extends BaseDecorator{
+public class DecoratorForString implements Links{
+
+    protected String url;
 
     public DecoratorForString(String url) {
-        super(url);
+        this.url = url;
     }
 
     private List<String> prepareLinks() {
