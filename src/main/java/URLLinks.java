@@ -1,25 +1,31 @@
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
-public class DecoratorForURL implements Links{
+
+
+public class URLLinks implements Links{
 
     protected Links <String> links;
+    Logger log = Logger.getLogger(Loggin.class.getName());
 
-    public DecoratorForURL(Links<String> links) {
+    public URLLinks(Links<String> links) {
         this.links = links;
     }
 
     private List<URL> prepareLinks() {
 
+
         List<URL> result  = new ArrayList<URL>();
 
         for (String link : links) {
             try {
-                result.add(new URL(link));
+                URL tempURL = new URL(link);
+                result.add(tempURL);
+                log.info("Add new link: " + tempURL);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -29,8 +35,7 @@ public class DecoratorForURL implements Links{
     }
 
     public Iterator<URL> iterator() {
-        List<URL> links = prepareLinks();
-        return links.iterator();
+        return prepareLinks().iterator();
 
     }
 }

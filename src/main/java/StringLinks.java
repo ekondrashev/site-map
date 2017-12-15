@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class DecoratorForString implements Links{
+public class StringLinks implements Links<String>{
 
     protected String url;
 
-    public DecoratorForString(String url) {
+    public StringLinks(String url) {
         this.url = url;
     }
 
@@ -30,17 +30,15 @@ public class DecoratorForString implements Links{
                 }
             }
 
-        } catch (IllegalStateException e) {
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalStateException();
         }
 
         return links;
     }
 
     public Iterator<String> iterator() {
-        List<String> links = prepareLinks();
-        return links.iterator();
+        return prepareLinks().iterator();
 
     }
 }

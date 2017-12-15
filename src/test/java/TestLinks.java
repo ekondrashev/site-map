@@ -16,7 +16,8 @@ public class TestLinks {
     
     @Before
     public void createListLinks() {
-        Links<URL> links = new DecoratorForURL (new DecoratorForString("http://www.tutorialspoint.com/"));
+
+        Links<URL> links = new URLLinks(new StringLinks("http://www.tutorialspoint.com/"));
          list = new ArrayList<URL>();
 
         for (URL url : links) {
