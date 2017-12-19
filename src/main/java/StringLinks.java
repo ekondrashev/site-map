@@ -15,7 +15,7 @@ public class StringLinks implements Links<String>{
         this.url = url;
     }
 
-    private List<String> prepareLinks() {
+    private List<String> miningLinks() {
 
         List<String> links  = new ArrayList<String>();
         Document doc;
@@ -38,7 +38,7 @@ public class StringLinks implements Links<String>{
     }
 
     public Iterator<String> iterator() {
-        return prepareLinks().iterator();
+        return miningLinks().iterator();
 
     }
 }

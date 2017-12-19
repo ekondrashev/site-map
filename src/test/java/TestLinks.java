@@ -1,3 +1,5 @@
+import org.hamcrest.Matcher;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -6,6 +8,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.core.AnyOf.anyOf;
 
 /**
  * Created by pavel on 22/11/2017.
@@ -48,16 +55,21 @@ public class TestLinks {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < testlist.size(); j++) {
-                if (testlist.get(j).equals(list.get(i)))
-                {
-                    testlist.remove(j);
-                }
-            }
-        }
+        assertThat(list, contains(url1));
+        assertThat(list, containsInAnyOrder(url1, url2, url3, url4, url5));
 
-        assert (count == 0);
+//        for (int i = 0; i < list.size(); i++) {
+//
+//            for (int j = 0; j < testlist.size(); j++) {
+//
+//                if (testlist.get(j).equals(list.get(i)))
+//                {
+//                    testlist.remove(j);
+//                }
+//            }
+//        }
+
+   //     assert (count == 0);
       
     }
 

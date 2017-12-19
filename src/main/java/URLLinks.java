@@ -16,7 +16,7 @@ public class URLLinks implements Links{
         this.links = links;
     }
 
-    private List<URL> prepareLinks() {
+    private List<URL> miningLinks() {
 
 
         List<URL> result  = new ArrayList<URL>();
@@ -35,7 +35,7 @@ public class URLLinks implements Links{
     }
 
     public Iterator<URL> iterator() {
-        return prepareLinks().iterator();
+        return miningLinks().iterator();
 
     }
 }
